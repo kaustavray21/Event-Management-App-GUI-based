@@ -1,0 +1,218 @@
+[
+  {
+    "title": "Tech Conference 2025",
+    "date": "2025-06-15",
+    "location": "San Francisco, CA",
+    "type": "conference",
+    "attendees": [
+      {
+        "name": "Alice Johnson",
+        "email": "alice.johnson@example.com"
+      },
+      {
+        "name": "Bob Smith",
+        "email": "bob.smith@example.com"
+      }
+    ]
+  },
+  {
+    "title": "Music Festival 2025",
+    "date": "2025-07-10",
+    "location": "Los Angeles, CA",
+    "type": "festival",
+    "attendees": [
+      {
+        "name": "Charlie Brown",
+        "email": "charlie.brown@example.com"
+      }
+    ]
+  },
+  {
+    "title": "Business Networking Event",
+    "date": "2025-08-25",
+    "location": "New York City, NY",
+    "type": "networking",
+    "attendees": [
+      {
+        "name": "David Lee",
+        "email": "david.lee@example.com"
+      },
+      {
+        "name": "Emily White",
+        "email": "emily.white@example.com"
+      },
+      {
+        "name": "Frank Clark",
+        "email": "frank.clark@example.com"
+      }
+    ]
+  },
+  {
+    "title": "Startup Pitch Competition",
+    "date": "2025-09-05",
+    "location": "Boston, MA",
+    "type": "competition",
+    "attendees": [
+      {
+        "name": "Grace Wilson",
+        "email": "grace.wilson@example.com"
+      }
+    ]
+  },
+  {
+    "title": "Digital Marketing Summit",
+    "date": "2025-09-12",
+    "location": "Chicago, IL",
+    "type": "conference",
+    "attendees": [
+      {
+        "name": "Henry Adams",
+        "email": "henry.adams@example.com"
+      },
+      {
+        "name": "Irene Green",
+        "email": "irene.green@example.com"
+      }
+    ]
+  },
+  {
+    "title": "AI and Robotics Expo",
+    "date": "2025-10-01",
+    "location": "Seattle, WA",
+    "type": "exhibition",
+    "attendees": [
+      {
+        "name": "Jack Turner",
+        "email": "jack.turner@example.com"
+      },
+      {
+        "name": "Kathy Miller",
+        "email": "kathy.miller@example.com"
+      }
+    ]
+  },
+  {
+    "title": "Creative Writing Workshop",
+    "date": "2025-10-15",
+    "location": "Austin, TX",
+    "type": "workshop",
+    "attendees": [
+      {
+        "name": "Liam Robinson",
+        "email": "liam.robinson@example.com"
+      }
+    ]
+  },
+  {
+    "title": "Food and Wine Festival",
+    "date": "2025-11-01",
+    "location": "Napa Valley, CA",
+    "type": "festival",
+    "attendees": [
+      {
+        "name": "Megan Harris",
+        "email": "megan.harris@example.com"
+      },
+      {
+        "name": "Noah Scott",
+        "email": "noah.scott@example.com"
+      }
+    ]
+  },
+  {
+    "title": "Sustainability Conference 2025",
+    "date": "2025-11-10",
+    "location": "Portland, OR",
+    "type": "conference",
+    "attendees": [
+      {
+        "name": "Olivia Green",
+        "email": "olivia.green@example.com"
+      }
+    ]
+  },
+  {
+    "title": "Virtual Reality Expo",
+    "date": "2025-12-05",
+    "location": "Las Vegas, NV",
+    "type": "exhibition",
+    "attendees": [
+      {
+        "name": "Paul Walker",
+        "email": "paul.walker@example.com"
+      },
+      {
+        "name": "Quincy White",
+        "email": "quincy.white@example.com"
+      }
+    ]
+  },
+  {
+    "title": "Healthcare Innovation Summit",
+    "date": "2026-01-20",
+    "location": "Miami, FL",
+    "type": "conference",
+    "attendees": [
+      {
+        "name": "Rachel Turner",
+        "email": "rachel.turner@example.com"
+      }
+    ]
+  },
+  {
+    "title": "Education and Tech Conference",
+    "date": "2026-02-10",
+    "location": "Washington, D.C.",
+    "type": "conference",
+    "attendees": [
+      {
+        "name": "Samuel Adams",
+        "email": "samuel.adams@example.com"
+      },
+      {
+        "name": "Tina Johnson",
+        "email": "tina.johnson@example.com"
+      }
+    ]
+  },
+  {
+    "title": "Gaming Expo 2026",
+    "date": "2026-03-15",
+    "location": "San Diego, CA",
+    "type": "exhibition",
+    "attendees": [
+      {
+        "name": "Uma Patel",
+        "email": "uma.patel@example.com"
+      }
+    ]
+  },
+  {
+    "title": "Film Festival 2026",
+    "date": "2026-04-05",
+    "location": "Cannes, France",
+    "type": "festival",
+    "attendees": [
+      {
+        "name": "Victor Lee",
+        "email": "victor.lee@example.com"
+      },
+      {
+        "name": "Wendy Allen",
+        "email": "wendy.allen@example.com"
+      }
+    ]
+  },
+  {
+    "title": "Kaustav's expo",
+    "date": "2025-09-22",
+    "location": "Delhi",
+    "type": "Workshop",
+    "attendees": [
+      {
+        "name": "Rishita Verma",
+        "email": "rishitavvvaa@gmail.com"
+      }
+    ]
+  }
+]

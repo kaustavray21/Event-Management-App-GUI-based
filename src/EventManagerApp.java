@@ -9,7 +9,7 @@ public class EventManagerApp {
 
     public EventManagerApp() {
         this.events = new ArrayList<>();
-        this.fileHandler = new EventFileHandler("C:\\Users\\kaust\\IdeaProjects\\EventManagementApp2\\src\\events.json"); // Relative path recommended
+        this.fileHandler = new EventFileHandler("C:\\Users\\kaust\\IdeaProjects\\EventManagementApp2\\src\\events.json"); // Relative path
     }
 
     // File Operations

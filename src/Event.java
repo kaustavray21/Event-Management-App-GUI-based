@@ -19,67 +19,6 @@ public class Event {
         this.attendees = new ArrayList<>();
     }
 
-    // JSON Serialization/Deserialization
-    public static class EventJsonParser {
-        private EventJsonParser() {} // Prevent instantiation
-
-        public static List<Event> loadEventsFromFile(String filePath) throws IOException {
-            try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-                String jsonContent = reader.lines().collect(Collectors.joining()).trim();
-                if (jsonContent.startsWith("[") && jsonContent.endsWith("]")) {
-                    jsonContent = jsonContent.substring(1, jsonContent.length() - 1).trim();
-                }
-                return parseEventArray(jsonContent);
-            }
-        }
-
-        private static List<Event> parseEventArray(String jsonArray) {
-            return Arrays.stream(splitJsonObjects(jsonArray))
-                    .filter(json -> !json.trim().isEmpty())
-                    .map(EventJsonParser::parseEvent)
-                    .filter(Objects::nonNull)
-                    .collect(Collectors.toList());
-        }
-
-        private static Event parseEvent(String json) {
-            try {
-                String title = extractJsonValue(json, "title");
-                String date = extractJsonValue(json, "date");
-                String location = extractJsonValue(json, "location");
-                String type = extractJsonValue(json, "type");
-
-                Event event = new Event(title, date, location, type);
-                parseAttendees(json, event);
-                return event;
-            } catch (Exception e) {
-                System.err.println("Error parsing event: " + e.getMessage());
-                return null;
-            }
-        }
-
-        private static void parseAttendees(String json, Event event) {
-            if (json.contains("\"attendees\":")) {
-                String attendeesJson = extractJsonArray(json, "attendees");
-                Arrays.stream(splitJsonObjects(attendeesJson))
-                        .map(EventJsonParser::parseAttendee)
-                        .filter(Objects::nonNull)
-                        .forEach(event::registerAttendee);
-            }
-        }
-
-        private static Attendee parseAttendee(String json) {
-            String fixedJson = json.trim();
-            if (fixedJson.isEmpty()) return null;
-
-            if (!fixedJson.startsWith("{")) fixedJson = "{" + fixedJson;
-            if (!fixedJson.endsWith("}")) fixedJson = fixedJson + "}";
-
-            String name = extractJsonValue(fixedJson, "name");
-            String email = extractJsonValue(fixedJson, "email");
-            return (name.isEmpty() && email.isEmpty()) ? null : new Attendee(name, email);
-        }
-    }
-
     // JSON Utility Methods
     private static String[] splitJsonObjects(String jsonArray) {
         List<String> objects = new ArrayList<>();
@@ -165,37 +104,20 @@ public class Event {
 
     private static String escapeJson(String input) {
         if (input == null) return "";
-        return input.replace("\\", "\\\\")
-                .replace("\"", "\\\"")
-                .replace("\n", "\\n")
-                .replace("\r", "\\r")
-                .replace("\t", "\\t");
+        return input.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", "\\n").replace("\r", "\\r").replace("\t", "\\t");
     }
 
     private static String unescapeJson(String input) {
-        return input.replace("\\\"", "\"")
-                .replace("\\n", "\n")
-                .replace("\\r", "\r")
-                .replace("\\t", "\t")
-                .replace("\\\\", "\\");
+        return input.replace("\\\"", "\"").replace("\\n", "\n").replace("\\r", "\r").replace("\\t", "\t").replace("\\\\", "\\");
     }
 
     // Core Methods
     public String convertToJson() {
-        return String.format(
-                "{\"title\":\"%s\",\"date\":\"%s\",\"location\":\"%s\",\"type\":\"%s\",\"attendees\":[%s]}",
-                escapeJson(title), escapeJson(date), escapeJson(location), escapeJson(type),
-                attendees.stream()
-                        .map(Attendee::toAttendeeJson)
-                        .collect(Collectors.joining(","))
-        );
+        return String.format("{\"title\":\"%s\",\"date\":\"%s\",\"location\":\"%s\",\"type\":\"%s\",\"attendees\":[%s]}", escapeJson(title), escapeJson(date), escapeJson(location), escapeJson(type), attendees.stream().map(Attendee::toAttendeeJson).collect(Collectors.joining(",")));
     }
 
     public String getDetails() {
-        return String.format(
-                "Title: %s\nDate: %s\nLocation: %s\nType: %s\nAttendees: %d",
-                title, date, location, type, attendees.size()
-        );
+        return String.format("Title: %s\nDate: %s\nLocation: %s\nType: %s\nAttendees: %d", title, date, location, type, attendees.size());
     }
 
     public boolean registerAttendee(Attendee attendee) {
@@ -210,9 +132,78 @@ public class Event {
     }
 
     // Getters
-    public String getTitle() { return title; }
-    public String getDate() { return date; }
-    public String getLocation() { return location; }
-    public String getType() { return type; }
-    public List<Attendee> getAttendees() { return Collections.unmodifiableList(attendees); }
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public List<Attendee> getAttendees() {
+        return Collections.unmodifiableList(attendees);
+    }
+
+    // JSON Serialization/Deserialization
+    public static class EventJsonParser {
+        private EventJsonParser() {
+        } // Prevent instantiation
+
+        public static List<Event> loadEventsFromFile(String filePath) throws IOException {
+            try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+                String jsonContent = reader.lines().collect(Collectors.joining()).trim();
+                if (jsonContent.startsWith("[") && jsonContent.endsWith("]")) {
+                    jsonContent = jsonContent.substring(1, jsonContent.length() - 1).trim();
+                }
+                return parseEventArray(jsonContent);
+            }
+        }
+
+        private static List<Event> parseEventArray(String jsonArray) {
+            return Arrays.stream(splitJsonObjects(jsonArray)).filter(json -> !json.trim().isEmpty()).map(EventJsonParser::parseEvent).filter(Objects::nonNull).collect(Collectors.toList());
+        }
+
+        private static Event parseEvent(String json) {
+            try {
+                String title = extractJsonValue(json, "title");
+                String date = extractJsonValue(json, "date");
+                String location = extractJsonValue(json, "location");
+                String type = extractJsonValue(json, "type");
+
+                Event event = new Event(title, date, location, type);
+                parseAttendees(json, event);
+                return event;
+            } catch (Exception e) {
+                System.err.println("Error parsing event: " + e.getMessage());
+                return null;
+            }
+        }
+
+        private static void parseAttendees(String json, Event event) {
+            if (json.contains("\"attendees\":")) {
+                String attendeesJson = extractJsonArray(json, "attendees");
+                Arrays.stream(splitJsonObjects(attendeesJson)).map(EventJsonParser::parseAttendee).filter(Objects::nonNull).forEach(event::registerAttendee);
+            }
+        }
+
+        private static Attendee parseAttendee(String json) {
+            String fixedJson = json.trim();
+            if (fixedJson.isEmpty()) return null;
+
+            if (!fixedJson.startsWith("{")) fixedJson = "{" + fixedJson;
+            if (!fixedJson.endsWith("}")) fixedJson = fixedJson + "}";
+
+            String name = extractJsonValue(fixedJson, "name");
+            String email = extractJsonValue(fixedJson, "email");
+            return (name.isEmpty() && email.isEmpty()) ? null : new Attendee(name, email);
+        }
+    }
 }
